@@ -12,7 +12,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  Map<String, Widget> pages = {"home_tab": const HomePage(), "inbox_tab": const InboxPage()};
+  Map<String, Widget> pages = {"home_tab":  HomePage(), "inbox_tab": const InboxPage()};
 
   Map<String, IconData> tabs = {
     "home": Icons.home,
