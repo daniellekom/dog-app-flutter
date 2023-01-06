@@ -25,10 +25,10 @@ class HomeViewModel extends BaseViewModel{
     ["Fish","assets/images/fish.png" ],
   ];
   List < List<String> > dogs = [
-    ["assets/images/dog.webp",'Jenny','Border Collie' ],
-    ["assets/images/dog1.png",'Skip' , 'chihuaha'],
-    ["assets/images/dog2.png", "Lucky", "goldendoodle" ],
-    ["assets/images/dog3.png" , 'Fluffy', 'Husky'],
+    ["assets/images/dog4.png",'Jenny','Bull dog', '2 Yrs old'],
+    ["assets/images/dog1.png",'Skip' , 'Golden', '1 Yrs old'],
+    ["assets/images/dog2.png", "Lucky", "goldendoodle" ,'3 Yrs old' ],
+    ["assets/images/dog3.png" , 'Fluffy', 'Husky', '6 Mths old'],
   ];
 
    String? selectedTab;

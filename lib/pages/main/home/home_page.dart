@@ -103,7 +103,9 @@ class HomePage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return AnimalTile(
                           iconImagePath: viewModel.dogs[index][0],
-                          buttonText: viewModel.dogs[index][1],
+                          dogNameText: viewModel.dogs[index][1],
+                          dogBreedText: viewModel.dogs[index][2],
+                          dogAgeText: viewModel.dogs[index][3],
                           isSelected: viewModel.selectedAnimals == viewModel.dogs[index][1],
                           onTap: () {
                             viewModel.animalSelected(viewModel.dogs[index][1]);

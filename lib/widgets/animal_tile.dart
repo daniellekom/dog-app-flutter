@@ -1,17 +1,23 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class AnimalTile extends StatelessWidget {
   final String iconImagePath;
-  final String buttonText;
+  final String dogNameText;
+  final String dogBreedText;
+  final String dogAgeText;
   final bool isSelected;
   final VoidCallback onTap;
 
   const AnimalTile({
     Key? key,
     required this.iconImagePath,
-    required this.buttonText,
+    required this.dogNameText,
+    required this.dogBreedText,
     required this.isSelected,
     required this.onTap,
+    required this.dogAgeText,
   }) : super(key: key);
 
   @override
@@ -19,22 +25,51 @@ class AnimalTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Column(
-
         children: [
           Container(
-            height:120,
+            height: 150,
             decoration: BoxDecoration(
               color: isSelected ? Colors.purple : Colors.white,
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: BorderRadius.circular(10),
             ),
-            child: Row(children: [
-              ClipRRect( borderRadius: BorderRadius.circular(20), child: Image.asset(iconImagePath)),SizedBox(width: 15,),
-              Text(buttonText,
-                style:  TextStyle(fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color:isSelected? Colors.white :Colors.black ),
-              ),
-            ],),
+            child: Row(
+              children: [
+                Image.asset(iconImagePath),
+                const SizedBox(
+                  width: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        dogNameText,
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold, color: isSelected ? Colors.white : Colors.black),
+                      ),
+                      const SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        dogBreedText,
+                        style: TextStyle(fontSize: 12, color: isSelected ? Colors.white : Colors.grey[600]),
+                      ),
+                      const SizedBox(
+                        height: 2,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 26.0),
+                        child: Text(
+                          dogAgeText,
+                          style: TextStyle(fontSize: 12, color: isSelected ? Colors.white : Colors.grey[600]),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
           const SizedBox(
             height: 24,
