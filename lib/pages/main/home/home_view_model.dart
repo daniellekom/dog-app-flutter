@@ -1,19 +1,48 @@
 
 import 'package:dogapp/model/animal.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:stacked/stacked.dart';
 
 
 class HomeViewModel extends BaseViewModel{
 
-  List<Animal> animal = [
-    Animal("1", "skip", "labrador", "7", "assets/images/dog.webp"),
-    Animal("2", "flash", "husky", "4", "assets/images/dog1.webp"),
-    Animal("3", "lucky", "goldendoodle", "2", "assets/images/dog2.webp"),
-    Animal("4", "poohbear", "poodle", "5", "assets/images/dog3.webp"),
-    Animal("5", "billy", "bordercolie", "6", "assets/images/dog4.webp"),
-    Animal("6", "tim", "chihuaha", "6", "assets/images/dog5.webp"),
+  List<Animal> animals = [
+    Animal("1", "skip", "labrador", "7", "assets/images/dog.webp",'dogs'),
+    Animal("2", "flash", "husky", "4", "assets/images/dog1.webp",'dogs'),
+    Animal("3", "lucky", "goldendoodle", "2", "assets/images/dog2.webp",'dogs'),
+    Animal("4", "poohbear", "poodle", "5", "assets/images/dog3.webp",'dogs'),
+    Animal("5", "billy", "bordercolie", "6", "assets/images/dog4.webp",'dogs'),
+    Animal("6", "tim", "chihuaha", "6", "assets/images/dog5.webp",'dogs'),
+    Animal("6", "tim", "chihuaha", "6", "assets/images/dog5.webp",'cats'),
+    Animal("6", "tim", "chihuaha", "6", "assets/images/dog5.webp",'cats'),
+    Animal("6", "tim", "chihuaha", "6", "assets/images/dog5.webp",'cats'),
   ];
+  //viewModel.animals.whereElement.species == species
+
+  List < List<String> > tabs = [
+    ["Dogs","assets/images/dog.webp" ],
+    ["Cats","assets/images/cat.png" ],
+    ["Hamster","assets/images/hamster.png" ],
+    ["Fish","assets/images/fish.png" ],
+  ];
+  List < List<String> > dogs = [
+    ["assets/images/dog.webp",'Jenny','Border Collie' ],
+    ["assets/images/dog1.png",'Skip' , 'chihuaha'],
+    ["assets/images/dog2.png", "Lucky", "goldendoodle" ],
+    ["assets/images/dog3.png" , 'Fluffy', 'Husky'],
+  ];
+
+   String? selectedTab;
+   String? selectedAnimals;
+
+  void tabSelected(String selectAtab) {
+    selectedTab = selectAtab;
+    notifyListeners();
+  }
+
+  void animalSelected(String selectAnimal){
+    selectedAnimals = selectAnimal;
+    notifyListeners();
+  }
 
   @override
   void dispose() {

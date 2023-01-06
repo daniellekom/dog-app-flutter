@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class AnimalTabs extends StatelessWidget {
+class AnimalTile extends StatelessWidget {
   final String iconImagePath;
   final String buttonText;
   final bool isSelected;
   final VoidCallback onTap;
 
-  const AnimalTabs({
+  const AnimalTile({
     Key? key,
     required this.iconImagePath,
     required this.buttonText,
@@ -19,24 +19,25 @@ class AnimalTabs extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Column(
+
         children: [
           Container(
-            height: 80,
-            padding: EdgeInsets.all(20),
+            height:120,
             decoration: BoxDecoration(
               color: isSelected ? Colors.purple : Colors.white,
-              borderRadius: BorderRadius.circular(60),
+              borderRadius: BorderRadius.circular(50),
             ),
             child: Row(children: [
               ClipRRect( borderRadius: BorderRadius.circular(20), child: Image.asset(iconImagePath)),SizedBox(width: 15,),
               Text(buttonText,
-                style:  TextStyle(fontSize: 10,
+                style:  TextStyle(fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color:isSelected? Colors.white :Colors.black ),)
+                    color:isSelected? Colors.white :Colors.black ),
+              ),
             ],),
           ),
           const SizedBox(
-            height: 12,
+            height: 24,
           ),
         ],
       ),

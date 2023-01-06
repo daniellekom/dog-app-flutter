@@ -8,7 +8,8 @@ class Animal{
   final String typeOfAnimal;
   final String age;
   final String imagePath;
+  final String species;
 
-  Animal(this.id, this.name, this.typeOfAnimal, this.age, this.imagePath);
+  Animal(this.id, this.name, this.typeOfAnimal, this.age, this.imagePath, this.species);
 
 }

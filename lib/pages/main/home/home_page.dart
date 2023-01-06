@@ -1,15 +1,16 @@
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:dogapp/pages/main/home/home_view_model.dart';
 import 'package:dogapp/widgets/animal_tabs.dart';
+import 'package:dogapp/widgets/animal_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = "/home";
-  final ScrollController controllerOne = ScrollController();
 
-   HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,19 +71,48 @@ class HomePage extends StatelessWidget {
                     hintText: "search pets",
                     focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(24))),
               ),
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               const Text(
                 "Pet Categories",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              Row(
-                children: const [
-                  AnimalTabs(iconImagePath: 'assets/images/dog.webp', buttonText: "Dogs"),
-                  SizedBox(width: 10,),
-                  AnimalTabs(iconImagePath: 'assets/images/dog.webp', buttonText: "Dogs"),
-                ],
-              )
+              const SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: viewModel.tabs.length,
+                    itemBuilder: (context, index) {
+                      return AnimalTabs(
+                        iconImagePath: viewModel.tabs[index][1],
+                        buttonText: viewModel.tabs[index][0],
+                        isSelected: viewModel.selectedTab == viewModel.tabs[index][0],
+                        onTap: () {
+                          viewModel.tabSelected(viewModel.tabs[index][0]);
+                        },
+                      );
+                    }),
+              ),
+              Expanded(
+                flex: 3,
+                  child: ListView.builder(scrollDirection: Axis.vertical,
+                      itemCount: viewModel.dogs.length,
+                      itemBuilder: (context, index) {
+                        return AnimalTile(
+                          iconImagePath: viewModel.dogs[index][0],
+                          buttonText: viewModel.dogs[index][1],
+                          isSelected: viewModel.selectedAnimals == viewModel.dogs[index][1],
+                          onTap: () {
+                            viewModel.animalSelected(viewModel.dogs[index][1]);
+                          },
+                        );
+                      })),
+
             ],
+
           ),
         ),
       ),
