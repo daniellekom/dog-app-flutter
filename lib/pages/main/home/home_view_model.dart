@@ -6,15 +6,13 @@ import 'package:stacked/stacked.dart';
 class HomeViewModel extends BaseViewModel{
 
   List<Animal> animals = [
-    Animal("1", "skip", "labrador", "7", "assets/images/dog.webp",'dogs'),
-    Animal("2", "flash", "husky", "4", "assets/images/dog1.webp",'dogs'),
-    Animal("3", "lucky", "goldendoodle", "2", "assets/images/dog2.webp",'dogs'),
-    Animal("4", "poohbear", "poodle", "5", "assets/images/dog3.webp",'dogs'),
-    Animal("5", "billy", "bordercolie", "6", "assets/images/dog4.webp",'dogs'),
-    Animal("6", "tim", "chihuaha", "6", "assets/images/dog5.webp",'dogs'),
-    Animal("6", "tim", "chihuaha", "6", "assets/images/dog5.webp",'cats'),
-    Animal("6", "tim", "chihuaha", "6", "assets/images/dog5.webp",'cats'),
-    Animal("6", "tim", "chihuaha", "6", "assets/images/dog5.webp",'cats'),
+    Animal("1", "skip", "labrador", "7", "assets/images/dog.webp",'Dogs'),
+    Animal("2", "flash", "husky", "4", "assets/images/dog1.png",'Dogs'),
+    Animal("3", "lucky", "goldendoodle", "2", "assets/images/dog2.png",'Dogs'),
+    Animal("4", "poohbear", "poodle", "5", "assets/images/dog3.png",'Dogs'),
+    Animal("5", "billy", "bordercolie", "6", "assets/images/dog4.png",'Dogs'),
+    Animal("2", "Sophie", "DSH", "3", "assets/images/cat.png",'Cats'),
+
   ];
   //viewModel.animals.whereElement.species == species
 
@@ -24,25 +22,35 @@ class HomeViewModel extends BaseViewModel{
     ["Hamster","assets/images/hamster.png" ],
     ["Fish","assets/images/fish.png" ],
   ];
-  List < List<String> > dogs = [
-    ["assets/images/dog4.png",'Jenny','Bull dog', '2 Yrs old'],
-    ["assets/images/dog1.png",'Skip' , 'Golden', '1 Yrs old'],
-    ["assets/images/dog2.png", "Lucky", "goldendoodle" ,'3 Yrs old' ],
-    ["assets/images/dog3.png" , 'Fluffy', 'Husky', '6 Mths old'],
-  ];
+
 
    String? selectedTab;
-   String? selectedAnimals;
+   String? selectedAnimal;
 
-  void tabSelected(String selectAtab) {
-    selectedTab = selectAtab;
+
+  void setSelectedTab(String tabIclickedOn) {
+    if(selectedTab == tabIclickedOn){
+      selectedTab = null;
+    }else{
+      selectedTab = tabIclickedOn;
+    }
     notifyListeners();
   }
 
-  void animalSelected(String selectAnimal){
-    selectedAnimals = selectAnimal;
+  void setSelectedAnimal(String animaliSelected){
+    if(animaliSelected == selectedAnimal){
+      selectedAnimal = null;
+    }else{
+      selectedAnimal = animaliSelected;
+    }
     notifyListeners();
   }
+
+  List<Animal> getAnimalsForTab(String? tab){
+    return animals.where((element) => element.species == tab).toList();
+  }
+
+
 
   @override
   void dispose() {

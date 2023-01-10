@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:dogapp/model/animal.dart';
 import 'package:dogapp/pages/main/home/home_view_model.dart';
 import 'package:dogapp/widgets/animal_tabs.dart';
 import 'package:dogapp/widgets/animal_tile.dart';
@@ -91,7 +92,7 @@ class HomePage extends StatelessWidget {
                         buttonText: viewModel.tabs[index][0],
                         isSelected: viewModel.selectedTab == viewModel.tabs[index][0],
                         onTap: () {
-                          viewModel.tabSelected(viewModel.tabs[index][0]);
+                          viewModel.setSelectedTab(viewModel.tabs[index][0]);
                         },
                       );
                     }),
@@ -99,16 +100,17 @@ class HomePage extends StatelessWidget {
               Expanded(
                 flex: 3,
                   child: ListView.builder(scrollDirection: Axis.vertical,
-                      itemCount: viewModel.dogs.length,
+                      itemCount: viewModel.getAnimalsForTab(viewModel.selectedTab).length,
                       itemBuilder: (context, index) {
+                      Animal animal = viewModel.getAnimalsForTab(viewModel.selectedTab)[index];
                         return AnimalTile(
-                          iconImagePath: viewModel.dogs[index][0],
-                          dogNameText: viewModel.dogs[index][1],
-                          dogBreedText: viewModel.dogs[index][2],
-                          dogAgeText: viewModel.dogs[index][3],
-                          isSelected: viewModel.selectedAnimals == viewModel.dogs[index][1],
+                          iconImagePath: animal.imagePath,
+                          dogNameText: animal.name,
+                          dogBreedText: animal.typeOfAnimal,
+                          dogAgeText: animal.age,
+                          isSelected: viewModel.selectedAnimal == animal.name,
                           onTap: () {
-                            viewModel.animalSelected(viewModel.dogs[index][1]);
+                            viewModel.setSelectedAnimal(animal.name);
                           },
                         );
                       })),

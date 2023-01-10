@@ -34,7 +34,7 @@ class AnimalTile extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Image.asset(iconImagePath),
+                Expanded(child: Image.asset(iconImagePath)),
                 const SizedBox(
                   width: 15,
                 ),
